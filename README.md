@@ -1,7 +1,7 @@
 ember-vest
 ==============================================================================
 
-[Short description of the addon.]
+[WIP]
 
 
 Compatibility

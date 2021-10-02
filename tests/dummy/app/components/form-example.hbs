@@ -1,0 +1,35 @@
+<div class="">
+  <form class="form-example" {{on "submit" (fn this.submit)}}>
+    <h1>Form Example...</h1>
+    <label for="">
+      <input
+        type="text"
+        name=""
+        value={{this.firstName}}
+        {{on "input" (pick "target.value" (fn (mut this.firstName)))}}
+        {{on "input" (fn this.validate "firstName")}}
+        {{on "blur" (fn this.validate "firstName")}}
+      >
+
+      {{#if this.errors.firstName}}
+        <span class="error">{{this.errors.firstName}}</span>
+      {{/if}}
+    </label>
+
+    <label for="">
+      <input
+        type="text"
+        name=""
+        value={{this.lastName}}
+        {{on "input" (pick "target.value" (fn (mut this.lastName)))}}
+        {{on "input" (fn this.validate "lastName")}}
+        {{on "blur" (fn this.validate "lastName")}}
+      >
+      {{#if this.errors.lastName}}
+        <span class="error">{{this.errors.lastName}}</span>
+      {{/if}}
+    </label>
+
+    <button type="submit" name="button">Save</button>
+  </form>
+</div>
