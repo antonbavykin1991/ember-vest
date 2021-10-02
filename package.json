@@ -1,15 +1,17 @@
 {
-  "name": "ember-vest",
-  "version": "0.0.0",
+  "name": "@ember-vest/ember-vest",
+  "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonbavykin1991/ember-vest.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Anton Bavykin",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -77,5 +79,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/antonbavykin1991/ember-vest/issues"
+  },
+  "homepage": "https://github.com/antonbavykin1991/ember-vest#readme"
 }
