@@ -1,5 +1,5 @@
 {
-  "name": "@ember-vest/ember-vest",
+  "name": "ember-vest",
   "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
