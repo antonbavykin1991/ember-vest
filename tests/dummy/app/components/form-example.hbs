@@ -31,5 +31,8 @@
     </label>
 
     <button type="submit" name="button">Save</button>
+
+    <button type="button" name="button" {{on "click" (fn this.updateLocale "en")}}>Update locale to EN</button>
+    <button type="button" name="button" {{on "click" (fn this.updateLocale "fr")}}>Update locale to FR</button>
   </form>
 </div>
