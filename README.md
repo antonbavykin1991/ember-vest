@@ -23,7 +23,7 @@ ember install ember-vest
 Usage
 ------------------------------------------------------------------------------
 
-```
+```js
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
