@@ -13,92 +13,44 @@ import {
 } from 'vest';
 
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import EmberObject from '@ember/object';
-import Evented from '@ember/object/evented';
 
-const updatedOnly = (changedField) => {
-  if (!changedField) {
-    only(changedField);
-    return;
+class ValidatorClass {
+  @tracked instance;
+
+  constructor(owner, validate) {
+    this.instance = validate.get();
+
+    this.validate = async (...args) => {
+      const instance = validate(owner, ...args);
+      instance.done && instance.done((i) => (this.instance = i));
+      this.instance = instance;
+    };
   }
 
-  let fields = Array.isArray(changedField) ? changedField : [changedField];
-
-  fields.forEach((field) => {
-    only(field);
-  });
-};
-
-class LocaleSupport extends EmberObject.extend(Evented) {
-  @tracked locale;
-
-  @action
-  setLocale(locale) {
-    this.locale = locale;
+  get errorCount() {
+    return !!this.instance.errorCount;
   }
 
-  @action
-  updateLocale(locale) {
-    if (this.locale === locale) {
-      return;
-    }
+  get errors() {
+    return this.instance.getErrors();
+  }
 
-    this.locale = locale;
-    this.trigger('localeUpdated', locale);
+  get warnings() {
+    return this.instance.getWarnings();
   }
 }
-
-export const localeSupport = LocaleSupport.create();
 
 export function Validator(name, fn) {
   const validate = create(name, fn);
 
   return function (target) {
     return class VestValidatorClass extends target {
-      @tracked _validator = validate.get();
-
-      constructor() {
-        super(...arguments);
-
-        localeSupport.on('localeUpdated', () => {
-          if (this._validator.testCount) {
-            const errors = Object.keys(this.validator.getErrors());
-            this.validate(errors);
-          }
-        });
-      }
-
-      get validator() {
-        return this._validator;
-      }
-
-      get isInvalid() {
-        return !!this.validator.errorCount;
-      }
-
-      get errors() {
-        return this.validator.getErrors();
-      }
-
-      @action
-      validate(...args) {
-        this._validator = validate(this, ...args);
-      }
+      @tracked
+      validator = new ValidatorClass(this, validate);
     };
   };
 }
 
 export default vest;
 
-export {
-  VERSION,
-  create,
-  enforce,
-  group,
-  updatedOnly as only,
-  optional,
-  skip,
-  test,
-  warn,
-};
+export { VERSION, create, enforce, group, only, optional, skip, test, warn };

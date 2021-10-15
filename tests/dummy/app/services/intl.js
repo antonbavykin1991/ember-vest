@@ -1,7 +1,6 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { localeSupport } from 'ember-vest';
 const data = {
   en: {
     firstName: 'Must be between 2 and 10 chars',
@@ -24,6 +23,5 @@ export default class Intl extends Service {
   @action
   setLocale(locale) {
     this.locale = locale;
-    localeSupport.updateLocale(locale);
   }
 }

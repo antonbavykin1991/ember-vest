@@ -7,11 +7,11 @@ import { inject as service } from '@ember/service';
 @Validator('FormExample', function (data, changedField) {
   only(changedField);
 
-  test('firstName', data.intl.t('firstName'), () => {
+  test('firstName', { message: 'firstName', options: {} }, () => {
     enforce(data.firstName).longerThanOrEquals(2).shorterThan(10);
   });
 
-  test('lastName', data.intl.t('lastName'), () => {
+  test('lastName', { message: 'lastName', options: {} }, () => {
     enforce(data.lastName).longerThanOrEquals(2).shorterThan(10);
   });
 })
@@ -24,7 +24,7 @@ export default class ExampleComponent extends Component {
   @action
   submit(e) {
     e.preventDefault();
-    this.validate();
+    this.validator.validate();
   }
 
   @action

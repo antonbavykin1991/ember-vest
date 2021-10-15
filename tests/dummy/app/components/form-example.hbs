@@ -1,5 +1,5 @@
 <div class="">
-  <form class="form-example" {{on "submit" (fn this.submit)}}>
+  <form class="form-example" {{on "submit" this.submit}}>
     <h1>Form Example...</h1>
     <label for="">
       <input
@@ -7,13 +7,12 @@
         name=""
         value={{this.firstName}}
         {{on "input" (pick "target.value" (fn (mut this.firstName)))}}
-        {{on "input" (fn this.validate "firstName")}}
-        {{on "blur" (fn this.validate "firstName")}}
+        {{on "input" (fn this.validator.validate "firstName")}}
+        {{on "blur" (fn this.validator.validate "firstName")}}
       >
-
-      {{#if this.errors.firstName}}
-        <span class="error">{{this.errors.firstName}}</span>
-      {{/if}}
+      {{#each this.validator.errors.firstName as |error|}}
+        <span class="error">{{t error.message}}</span>
+      {{/each}}
     </label>
 
     <label for="">
@@ -22,12 +21,12 @@
         name=""
         value={{this.lastName}}
         {{on "input" (pick "target.value" (fn (mut this.lastName)))}}
-        {{on "input" (fn this.validate "lastName")}}
-        {{on "blur" (fn this.validate "lastName")}}
+        {{on "input" (fn this.validator.validate "lastName")}}
+        {{on "blur" (fn this.validator.validate "lastName")}}
       >
-      {{#if this.errors.lastName}}
-        <span class="error">{{this.errors.lastName}}</span>
-      {{/if}}
+      {{#each this.validator.errors.lastName as |error|}}
+        <span class="error">{{t error.message}}</span>
+      {{/each}}
     </label>
 
     <button type="submit" name="button">Save</button>

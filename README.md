@@ -32,11 +32,11 @@ import { Validator, test, enforce, only } from 'ember-vest';
 @Validator('FormExample', function (data, changedField) {
   only(changedField);
 
-  test('firstName', 'Must be between 2 and 10 chars', () => {
+  test('firstName', { message: 'firstName', options: {} }, () => {
     enforce(data.firstName).longerThanOrEquals(2).shorterThan(10);
   });
 
-  test('lastName', 'Must be between 2 and 10 chars', () => {
+  test('lastName', { message: 'lastName', options: {} }, () => {
     enforce(data.lastName).longerThanOrEquals(2).shorterThan(10);
   });
 })
@@ -47,14 +47,14 @@ export default class ExampleComponent extends Component {
   @action
   submit(e) {
     e.preventDefault();
-    this.validate();
+    this.validator.validate();
   }
 }
 ```
 
 ```hbs
 <div class="">
-  <form class="form-example" {{on "submit" (fn this.submit)}}>
+  <form class="form-example" {{on "submit" this.submit}}>
     <h1>Form Example...</h1>
     <label for="">
       <input
@@ -62,13 +62,12 @@ export default class ExampleComponent extends Component {
         name=""
         value={{this.firstName}}
         {{on "input" (pick "target.value" (fn (mut this.firstName)))}}
-        {{on "input" (fn this.validate "firstName")}}
-        {{on "blur" (fn this.validate "firstName")}}
+        {{on "input" (fn this.validator.validate "firstName")}}
+        {{on "blur" (fn this.validator.validate "firstName")}}
       >
-
-      {{#if this.errors.firstName}}
-        <span class="error">{{this.errors.firstName}}</span>
-      {{/if}}
+      {{#each this.validator.errors.firstName as |error|}}
+        <span class="error">{{t error.message}}</span>
+      {{/each}}
     </label>
 
     <label for="">
@@ -77,17 +76,18 @@ export default class ExampleComponent extends Component {
         name=""
         value={{this.lastName}}
         {{on "input" (pick "target.value" (fn (mut this.lastName)))}}
-        {{on "input" (fn this.validate "lastName")}}
-        {{on "blur" (fn this.validate "lastName")}}
+        {{on "input" (fn this.validator.validate "lastName")}}
+        {{on "blur" (fn this.validator.validate "lastName")}}
       >
-      {{#if this.errors.lastName}}
-        <span class="error">{{this.errors.lastName}}</span>
-      {{/if}}
+      {{#each this.validator.errors.lastName as |error|}}
+        <span class="error">{{t error.message}}</span>
+      {{/each}}
     </label>
 
     <button type="submit" name="button">Save</button>
   </form>
 </div>
+
 ```
 
 
