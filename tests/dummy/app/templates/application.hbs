@@ -1,5 +1,66 @@
 {{page-title "Form Example"}}
 
-<FormExample />
-
-{{outlet}}
+<div class="flex flex-col flex-1 h-full">
+  <div class="flex flex-col h-18 items-center shadow bg-white relative">
+    <div class="flex flex-row justify-between container mx-auto p-4">
+      <LinkTo @route="index" class="flex flex-row text-red-700">
+        <div class="w-10 h-10 mr-4">
+          <img src="/vest-logo.png" alt="">
+        </div>
+        <div class="flex flex-col justify-between mr-10">
+          <span class="text-xs font-bold">Ember</span>
+          <span class="text-lg uppercase font-bold">vest</span>
+        </div>
+      </LinkTo>
+      <div class="flex flex-row items-center justify-center">
+        <a href="https://github.com/antonbavykin1991/ember-vest" target="__blank" class="hover:text-red-800">
+          <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="24" height="24"><title>GitHub</title><path d="M10 0a10 10 0 00-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 01.1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 015 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0010 0"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mx-auto flex flex-1 flex-row">
+    <div class="flex flex-col w-64 border-r p-4 py-8">
+      <ul class="">
+        <li class="pb-4">
+          <span>Overview</span>
+          <ul>
+            <li class="p-2 px-4">
+              <LinkTo @route="index" class="text-sm hover:underline">
+                Installation
+              </LinkTo>
+            </li>
+          </ul>
+        </li>
+        <li class="pb-4">
+          <span>Demo</span>
+          <ul>
+            <li class="p-2 px-4">
+              <LinkTo @route="simple" class="text-sm hover:underline">
+                Simple
+              </LinkTo>
+            </li>
+            <li class="p-2 px-4">
+              <LinkTo @route="groups" class="text-sm hover:underline">
+                Groups
+              </LinkTo>
+            </li>
+            <li class="p-2 px-4">
+              <LinkTo @route="async" class="text-sm hover:underline">
+                Async
+              </LinkTo>
+            </li>
+            <li class="p-2 px-4">
+              <LinkTo @route="i18n" class="text-sm hover:underline">
+                I18n support
+              </LinkTo>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col flex-1 py-8 px-16 bg-white">
+      {{outlet}}
+    </div>
+  </div>
+</div>

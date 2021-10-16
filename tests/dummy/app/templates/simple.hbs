@@ -1,0 +1,16 @@
+<div class="flex flex-col flex-1">
+  <div class="flex flex-col mb-16">
+    <h1 class="text-3xl font-bold mb-8">Simple form example</h1>
+
+    <SimpleExample />
+
+    <CodeBlock
+      @tabs={{array "components/simple-example.hbs" "components/simple-example.js"}}
+    />
+  </div>
+
+  <div class="flex flex-row justify-between">
+    <LinkTo @route="index" class="text-red-700">Previous Step: Overview</LinkTo>
+    <LinkTo @route="groups" class="text-red-700">Next Step: Groups Demo</LinkTo>
+  </div>
+</div>

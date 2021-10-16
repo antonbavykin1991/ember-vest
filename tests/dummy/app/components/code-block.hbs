@@ -1,0 +1,18 @@
+<div class="bg-gray-100 rounded text-sm" ...attributes>
+  <div class="border-b-2 p-4 flex flex-row">
+    {{#each @tabs as |tab|}}
+      <span
+        class="px-2 font-bold {{if (call (fn this.isEqual tab this.activeTab)) "text-red-700"}}"
+        role="button"
+        {{on "click" (fn this.updateTab tab)}}
+      >
+        {{tab}}
+      </span>
+    {{/each}}
+  </div>
+  <div class="p-4">
+    {{#let (get-code-snippet this.activeTab) as |snippet|}}
+      <pre><code>{{call (fn this.highlight snippet.source)}}</code></pre>
+    {{/let}}
+  </div>
+</div>

@@ -1,7 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "highlight.js/styles/default";
+
 html,
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(90deg, rgb(243, 244, 246) 50%, #FFF 50%);
+}
+
+a.active {
+  @apply text-red-700;
 }
 
 .form-example {

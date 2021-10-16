@@ -1,0 +1,39 @@
+<form class="flex flex-col mb-8" {{on "submit" this.submit}}>
+  <label for="" class="mb-4 flex flex-col">
+    <span class="text-sm font-bold mb-2">First Name</span>
+    <input
+      type="text"
+      name=""
+      value=""
+      class="text-sm p-2 border mb-2"
+      value={{this.firstName}}
+      {{on "input" (pick "target.value" (fn (mut this.firstName)))}}
+      {{on "input" (fn this.validator.validate "firstName")}}
+      {{on "blur" (fn this.validator.validate "firstName")}}
+    >
+    {{#each this.validator.errors.firstName as |error|}}
+      <span class="text-sm text-red-700 mb-1">{{error}}</span>
+    {{/each}}
+  </label>
+
+  <label for="" class="mb-4 flex flex-col">
+    <span class="text-sm font-bold mb-2">Last Name</span>
+    <input
+      type="text"
+      name=""
+      value=""
+      class="text-sm p-2 border mb-2"
+      value={{this.lastName}}
+      {{on "input" (pick "target.value" (fn (mut this.lastName)))}}
+      {{on "input" (fn this.validator.validate "lastName")}}
+      {{on "blur" (fn this.validator.validate "lastName")}}
+    >
+    {{#each this.validator.errors.lastName as |error|}}
+      <span class="text-sm text-red-700 mb-1">{{error}}</span>
+    {{/each}}
+  </label>
+
+  <div class="flex flex-row">
+    <button type="submit" class="bg-green-400 p-2 px-8 text-white" name="button">Validate</button>
+  </div>
+</form>
