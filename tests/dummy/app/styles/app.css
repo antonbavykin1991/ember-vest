@@ -10,44 +10,6 @@ body {
 }
 
 a.active {
-  @apply text-red-700;
-}
-
-.form-example {
-  display: flex;
-  flex-direction: column;
-  width: 640px;
-  margin: 0 auto;
-}
-
-.form-example label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.form-example input {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.form-example label span {
-  margin-bottom: 10px;
-}
-
-.form-example label span.error {
-  color: red;
-  font-size: 12px;
-}
-
-.form-example button {
-  padding: 10px;
-  background: green;
-  color: #fff;
-  font-weight: 18px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 20px;
+  --tw-text-opacity: 1;
+  color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
