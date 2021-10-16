@@ -11,6 +11,7 @@ const purgeCSS = {
       './tests/dummy/app/index.html',
       './tests/dummy/app/templates/**/*.hbs',
       './tests/dummy/app/components/**/*.hbs',
+      './tests/dummy/app/styles/app.css',
     ],
     defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/.]+/g) || [],
   },
