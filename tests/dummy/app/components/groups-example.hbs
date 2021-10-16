@@ -1,0 +1,70 @@
+<div class="flex flex-row items-center justify-center">
+  <a
+    href="#"
+    class="font-bold text-lg px-4 py-2 mr-2 {{if (call (fn this.isEqual this.type "sign_in")) "text-red-700"}}"
+    {{on "click" (fn this.updateType "sign_in")}}
+  >Sign in</a>
+  <a
+    href="#"
+    class="font-bold text-lg px-4 py-2 ml-2 {{if (call (fn this.isEqual this.type "sign_up")) "text-red-700"}}"
+    {{on "click" (fn this.updateType "sign_up")}}
+  >Sign up</a>
+</div>
+<form class="flex flex-col mb-8" {{on "submit" this.submit}}>
+  <label for="" class="mb-4 flex flex-col">
+    <span class="text-sm font-bold mb-2">Email</span>
+    <input
+      type="text"
+      name=""
+      value=""
+      class="text-sm p-2 border mb-2"
+      value={{this.email}}
+      {{on "input" (pick "target.value" (fn (mut this.email)))}}
+      {{on "input" (fn this.validator.validate "email")}}
+      {{on "blur" (fn this.validator.validate "email")}}
+    >
+    {{#each this.validator.errors.email as |error|}}
+      <span class="text-sm text-red-700 mb-1">{{error}}</span>
+    {{/each}}
+  </label>
+
+  <label for="" class="mb-4 flex flex-col">
+    <span class="text-sm font-bold mb-2">Password</span>
+    <input
+      type="text"
+      name=""
+      value=""
+      class="text-sm p-2 border mb-2"
+      value={{this.password}}
+      {{on "input" (pick "target.value" (fn (mut this.password)))}}
+      {{on "input" (fn this.validator.validate (array "password" "confirmPassword"))}}
+      {{on "blur" (fn this.validator.validate (array "password" "confirmPassword"))}}
+    >
+    {{#each this.validator.errors.password as |error|}}
+      <span class="text-sm text-red-700 mb-1">{{error}}</span>
+    {{/each}}
+  </label>
+
+  {{#if (call (fn this.isEqual this.type "sign_up"))}}
+    <label for="" class="mb-4 flex flex-col">
+      <span class="text-sm font-bold mb-2">Confirm Password</span>
+      <input
+        type="text"
+        name=""
+        value=""
+        class="text-sm p-2 border mb-2"
+        value={{this.confirmPassword}}
+        {{on "input" (pick "target.value" (fn (mut this.confirmPassword)))}}
+        {{on "input" (fn this.validator.validate "confirmPassword")}}
+        {{on "blur" (fn this.validator.validate "confirmPassword")}}
+      >
+      {{#each this.validator.errors.confirmPassword as |error|}}
+        <span class="text-sm text-red-700 mb-1">{{error}}</span>
+      {{/each}}
+    </label>
+  {{/if}}
+
+  <div class="flex flex-row">
+    <button type="submit" class="bg-green-400 p-2 px-8 text-white" name="button">Validate</button>
+  </div>
+</form>

@@ -10,6 +10,5 @@ body {
 }
 
 a.active {
-  --tw-text-opacity: 1;
-  color: rgba(185, 28, 28, var(--tw-text-opacity));
+  color: rgba(185, 28, 28);
 }
