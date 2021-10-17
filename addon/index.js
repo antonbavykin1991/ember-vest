@@ -20,10 +20,15 @@ class ValidatorClass {
   constructor(owner, validate) {
     this.instance = validate.get();
 
-    this.validate = async (...args) => {
+    this.validate = (...args) => {
       const instance = validate(owner, ...args);
       instance.done && instance.done((i) => (this.instance = i));
       this.instance = instance;
+    };
+
+    this.reset = (...args) => {
+      validate.reset(...args);
+      this.instance = validate.get();
     };
   }
 
@@ -50,7 +55,7 @@ export function Validator(name, fn) {
 
       willDestroy() {
         super.willDestroy(...arguments);
-        validate.reset();
+        this.validator.reset();
       }
     };
   };

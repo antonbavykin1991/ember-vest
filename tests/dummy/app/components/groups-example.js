@@ -23,7 +23,7 @@ import { Validator, test, enforce, only, group } from 'ember-vest';
     }
   });
 })
-export default class SimpleExampleComponent extends Component {
+export default class GroupsExampleComponent extends Component {
   @tracked type = 'sign_in';
   @tracked email;
   @tracked password;
@@ -40,10 +40,11 @@ export default class SimpleExampleComponent extends Component {
 
   @action updateType(type, e) {
     e.preventDefault();
+    const currentType = this.type;
     this.type = type;
 
-    if (this.validator.instance.testCount) {
-      this.validator.validate();
+    if (currentType !== type) {
+      this.validator.reset();
     }
   }
 }
