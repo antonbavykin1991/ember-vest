@@ -6,6 +6,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+
+}
+
+.ember-application {
   background: linear-gradient(90deg, rgb(243, 244, 246) 50%, #FFF 50%);
 }
 
