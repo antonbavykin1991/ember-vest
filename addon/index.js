@@ -20,10 +20,22 @@ class ValidatorClass {
   constructor(owner, validate) {
     this.instance = validate.get();
 
-    this.validate = (...args) => {
-      const instance = validate(owner, ...args);
-      instance.done && instance.done((i) => (this.instance = i));
-      this.instance = instance;
+    this.validate = async (...args) => {
+      return new Promise((resolve) => {
+        const instance = validate(owner, ...args);
+
+        if (instance.done) {
+          instance.done((i) => {
+            this.instance = i;
+            resolve(i);
+          });
+
+          return;
+        }
+
+        this.instance = instance;
+        resolve(instance);
+      });
     };
 
     this.reset = (...args) => {
@@ -34,6 +46,10 @@ class ValidatorClass {
 
   get errorCount() {
     return !!this.instance.errorCount;
+  }
+
+  get isValid() {
+    return !this.instance.errorCount;
   }
 
   get errors() {

@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { Validator, test, enforce, only, group } from 'ember-vest';
 
-@Validator('FormExample', function (data, changedField) {
+@Validator('GroupsExample', function (data, changedField) {
   only(changedField);
   only.group(data.type);
 
@@ -29,9 +29,13 @@ export default class GroupsExampleComponent extends Component {
   @tracked password;
   @tracked confirmPassword;
 
-  @action submit(e) {
+  @action async submit(e) {
     e.preventDefault();
-    this.validator.validate();
+    await this.validator.validate();
+
+    if (this.validator.isValid) {
+      alert('success');
+    }
   }
 
   @action isEqual(a, b) {
