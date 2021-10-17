@@ -12,3 +12,7 @@ body {
 a.active {
   color: rgba(185, 28, 28);
 }
+
+.test-class {
+  color: rgba(185, 28, 28);
+}
