@@ -36,6 +36,7 @@ module.exports = function (defaults) {
   });
 
   app.import('node_modules/highlight.js/styles/default.css');
+  app.import('tests/dummy/public/other.css');
   /*
     This build file specifies the options for the dummy test app of this
     addon, located in `/tests/dummy`
