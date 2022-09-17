@@ -12,6 +12,10 @@ Compatibility
 * Node.js v10 or above
 
 
+Alternative usage without addon
+------------------------------------------------------------------------------
+https://gist.github.com/antonbavykin1991/86b6abfecd18dd788faacb13f468a195
+
 Installation
 ------------------------------------------------------------------------------
 
